@@ -4,26 +4,18 @@ class Language():
     def __init__(self, language):
         self.language = set(language)
 
-    def union(self, other_language):
-       pass
-    
-    def difference(self, other_language):
-        pass
-
-    def intersection(self, other_language):
-        pass
-
     def concatenation(self, other_language):
-        pass
-
+        concatenated_words = {word1 + word2 for word1 in self.words for word2 in other_language.words}
+        return Language(concatenated_words)
+    
     def power(self, exponent):
         pass
 
     def inverse(self):
-        pass
+        inverse_words = {word[::-1] for word in self.words}
+        return Language(inverse_words)
 
-    def cardinality(self):
-        pass
+
 
     
     

@@ -1,4 +1,4 @@
-#Lenguajes Formales
+Lenguajes Formales
 Proyecto: Manejo de Alfabetos y Lenguajes
 
 Descripción:
