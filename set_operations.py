@@ -1,5 +1,5 @@
 class SetOperations:
-    def __init__(self, data):
+    def _init_(self, data):
         self.data = set(data)
 
     def union(self, other_set):
