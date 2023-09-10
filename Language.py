@@ -29,6 +29,21 @@ class Language(SetOperations):
 
     def cardinality(self):
         return len(self.language.data)
+    
+    
+    # Compartidos por todas las clases
+    
+    # atributo de clase para almacenar todos los lenguajes
+    all_languages = {}
+    
+    
+    # Metodos de clases
+    @classmethod
+    def add_language(cls, name, data):
+        if name not in cls.all_languages:
+            cls.all_languages[name] = data
+        else:
+            print(f"El lenguaje ya existe")
 
 
     
