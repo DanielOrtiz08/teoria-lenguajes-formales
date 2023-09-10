@@ -1,4 +1,5 @@
 from alphabet import Alphabet
+from language import Language
 
 
 def enter_set(sets):
