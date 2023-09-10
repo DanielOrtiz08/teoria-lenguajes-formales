@@ -1,6 +1,5 @@
 from alphabet_menu import alphabet_menu
 from language_menu import language_menu
-import re
     
 def main():
     while True:
