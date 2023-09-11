@@ -41,11 +41,32 @@ class Language(SetOperations):
     
     # Metodos de clases
     @classmethod
-    def add_language(cls, name, data):
+    def add_language(cls, name, element):
         if name not in cls.all_languages:
-            cls.all_languages[name] = data
+            cls.all_languages[name] = element
         else:
-            print(f"El lenguaje ya existe")
+            choice = input(f"el conjunto {name} ya existe, desea modificarlo (si/no)")
+            if choice == "si":
+                cls.set_alphabet(name, element)
+
+    @classmethod
+    def get_all_languages(cls):
+        return cls.all_languages
+    
+    @classmethod
+    def get_languages(cls, name):
+        if cls.contains_languages(name):
+            return cls.all_languages[name]
+    
+    @classmethod
+    def set_languages(cls, name, elements):
+        if cls.contains_languages(name):
+            cls.all_languagess[name] = Language(elements)
+
+    @classmethod
+    def delete_languages(cls, name):
+        if cls.contains_languages(name):
+            del cls.all_languauges[name]
 
 
     

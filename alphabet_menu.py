@@ -16,9 +16,6 @@ def process_set(alphabets):
         
 def show_all_alphabet():
     print(f"Los Alfabetos registrados hasta el momento son: ")
-    # si se deja como lo tenias primero (deivis) de esta forma "print(Alphabet.get_all_alphabet())" va a mostrar 
-    # como key (el nombre que es de tipo 'string') y para value al ser de tipo Alphabet(objeto) mostrara la referencia de memoria
-    #aqui abajo dos alternativas correctas
     all_alphabets = Alphabet.get_all_alphabets()
     for name in all_alphabets:
         print(f"{name}: {all_alphabets[name].elements}")
@@ -38,9 +35,9 @@ def alphabet_menu():
     
     os.system('cls')
     
-    language_input = input("Digite los conjuntos de alfabeto de la forma A = {f, k, 3} B = {h, 5, h, 2}: ")
-    language_input = "A = {f, k, 3} B = {h, 5, h, 2} C = {a, l, 3} D = {h, 5, t, jk}" # esto es mientras se prueba el codigo
-    process_set(language_input)
+    alphabet_input = input("Digite los conjuntos de alfabeto de la forma A = {f, k, 3} B = {h, 5, h, 2}: ")
+    alphabet_input = "A = {f, k, 3} B = {h, 5, h, 2} C = {a, l, 3} D = {h, 5, t, jk}" # esto es mientras se prueba el codigo
+    process_set(alphabet_input)
     
     
     while True:
