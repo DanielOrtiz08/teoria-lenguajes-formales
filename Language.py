@@ -3,17 +3,17 @@ from set_operations import SetOperations
 class Language(SetOperations):
     
     def __init__(self, language):
-        self.language = set(language)
+        super().__init__(language)
 
     def concatenation(self, other_language):
         concatenated_words = set()
-        for word1 in self.language:
+        for word1 in self.elements:
             for word2 in other_language:
                 concatenated_words.add(word1 + word2)
         return concatenated_words
     
     def power(self, exponent):
-        language = self.language
+        language = self.elements
         if exponent == 0:
         # L^0 = {λ} (conjunto que contiene la cadena vacía)
             return {""}
@@ -27,18 +27,17 @@ class Language(SetOperations):
             return result
 
     def inverse(self):
-        inverse_words = {word[::-1] for word in self.language.data}
+        inverse_words = {word[::-1] for word in self.elements}
         return Language(inverse_words)
 
     def cardinality(self):
-        return len(self.language.data)
+        return len(self.elements)
     
     
     # Compartidos por todas las clases
     
     # atributo de clase para almacenar todos los lenguajes
     all_languages = {}
-    
     
     # Metodos de clases
     @classmethod
