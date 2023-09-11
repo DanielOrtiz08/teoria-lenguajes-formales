@@ -26,11 +26,13 @@ def show_all_alphabet():
     for name, alphabet_instance in all_alphabets.items():
     print(f"{name}: {alphabet_instance.elements}")
     '''
-  
-def show_all_alphabet():
-    print(f"Los Alfabetos registrados hasta el momento son: ")
-    print(Alphabet.get_all_alphabet())
 
+def get_name_input(choise):
+    if choise in ("1", "2", "3"):
+        alphabet_names = input("Ingrese los nombres de los conjuntos a operar de la forma A B C o A, B, C: ")
+        return re.findall(r'[^,\s]+', alphabet_names)
+    else:
+        return input("Ingrese el nombre del conjunto a operar para la cerradura de estrella: ")
 
 def alphabet_menu():
     
@@ -51,33 +53,33 @@ def alphabet_menu():
         print("5. Volver al menú principal")
         choice = input("Selecciona una operación: ")
         
+        if choice == "5":
+            os.system('cls')
+            m.main()
         
         show_all_alphabet()
         
-        
-        alphabet_names = input("ingrese los nombres de los conjuntos a operar de la forma A B C  o  A, B, C : ")
-        alphabet_names = re.findall(r'[^,\s]+', alphabet_names)
+        alphabet_names = get_name_input(choice)
        
         result = None
         
         all_alphabets = Alphabet.get_all_alphabets() # en una variable porque no deja iterar sobre el metodo get_all_alphabet, no se el por que
         for name in alphabet_names:
             if name in Alphabet.all_alphabets:
-                if result is None:
+                if result is None and choice != "4":
                     result = Alphabet.get_alphabet(name)
-                else:
-                    if choice == "1":
-                        result = Alphabet(result._union(all_alphabets[name]))
-                    elif choice == "2":
-                        result = Alphabet(result._intersection(all_alphabets[name]))
-                    elif choice == "3":
-                        result = Alphabet(result._difference(all_alphabets[name]))
-                    elif choice == "4":
-                        #corregir, no puede estar aqui
-                        num_element = int(input("Ingrese la cantidad de elementos de la cerradura: "))
-                        result = result.generate_closure(num_element)
-                    elif choice == "5":
-                        m.main()
+                elif choice == "1":
+                    result = Alphabet(result._union(all_alphabets[name]))
+                elif choice == "2":
+                    result = Alphabet(result._intersection(all_alphabets[name]))
+                elif choice == "3":
+                    result = Alphabet(result._difference(all_alphabets[name]))
+                elif choice == "4":
+                    num_elements = int(input(f"Ingrese la cantidad de elementos para la cerradura estrella del conjunto {name}: "))
+                    alphabet = Alphabet.get_alphabet(name)
+                    clousure = alphabet.generate_closure(num_elements)
+                    result = Alphabet(clousure)
+                    break
             else:
                 print(f"El conjunto {name}, no se encuentra por ende no será procesado")
                 

@@ -6,10 +6,14 @@ class Alphabet(SetOperations):
     def __init__(self, alphabet):
         super().__init__(alphabet)
     
-    def generate_closure(self, num_element):
-        random_words = [''.join(random.choice(self.set_operations.data) for _ in range(5)) for _ in range(num_element)]
-        return random_words
-    
+    #este metodo no funciona alex
+    def generate_closure(self, num_elements):
+        cerradura_estrella = set()
+        for _ in range(num_elements):
+            palabra = ''.join(random.choice(tuple(self.elements)) for _ in range(random.randint(1, 7)))
+            cerradura_estrella.add(palabra)
+        return cerradura_estrella
+        
     
     # COMPARTIDOS POR TODAS LAS INSTANCIAS
     
@@ -27,7 +31,7 @@ class Alphabet(SetOperations):
         if not cls.contains_alphabet(name):
             cls.all_alphabets[name] = Alphabet(elements)
         else:
-            choice = input("el conjunto ya existe, desea modificarlo (si/no)")
+            choice = input(f"el conjunto {name} ya existe, desea modificarlo (si/no)")
             if choice == "si":
                 cls.set_alphabet(name, elements)
     
