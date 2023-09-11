@@ -1,4 +1,4 @@
-from alphabet_menu import alphabet_menu
+import alphabet_menu as am
 from language_menu import language_menu
     
 def main():
@@ -11,7 +11,7 @@ def main():
         choice = input("Selecciona una opción: ")
 
         if choice == "1":
-            alphabet_menu()
+            am.alphabet_menu()
         elif choice == "2":
             language_menu()
         elif choice == "3":
