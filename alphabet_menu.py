@@ -1,6 +1,7 @@
 from Alphabet import Alphabet
 import main as m
 import re
+import os
 
 def process_set(alphabets):
     
@@ -26,7 +27,14 @@ def show_all_alphabet():
     print(f"{name}: {alphabet_instance.elements}")
     '''
   
+def show_all_alphabet():
+    print(f"Los Alfabetos registrados hasta el momento son: ")
+    print(Alphabet.get_all_alphabet())
+
+
 def alphabet_menu():
+    
+    os.system('cls')
     
     language_input = input("Digite los conjuntos de alfabeto de la forma A = {f, k, 3} B = {h, 5, h, 2}: ")
     language_input = "A = {f, k, 3} B = {h, 5, h, 2} C = {a, l, 3} D = {h, 5, t, jk}" # esto es mientras se prueba el codigo
@@ -34,6 +42,7 @@ def alphabet_menu():
     
     
     while True:
+
         print("\n    Menú de Operaciones con Alfabetos    ")
         print("1. Unión")
         print("2. Intersección")
