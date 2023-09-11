@@ -15,7 +15,7 @@ def process_set(alphabets):
 def alphabet_menu():
     
     language_input = input("Digite los conjuntos de alfabeto de la forma A = {f, k, 3} B = {h, 5, h, 2}")
-    language_input = "A = {f, k, 3} B = {h, 5, h, 2} C = {a, l, 3} C = {h, 5, t, jk}"
+    language_input = "A = {f, k, 3} B = {h, 5, h, 2} C = {a, l, 3} C = {h, 5, t, jk}: "
     process_set(language_input)
     
     
@@ -31,7 +31,7 @@ def alphabet_menu():
         
         print("Alfabetos disponibles para la operación: ")
         for name in Alphabet.all_alphabet:
-            print(f"{name}: {Alphabet.all_alphabet[name].alphabet}")
+            print(f"{name}: {Alphabet.all_alphabet[name].elements}")
         alphabet_names = input("ingrese los nombres de los conjuntos a operar de la forma A B C o A, B, C")
         alphabet_names = re.findall(r'[^,\s]+', alphabet_names)
        
@@ -57,6 +57,6 @@ def alphabet_menu():
                 print(f"El conjunto {name}, no se encuentra por ende no será procesado")
                 
         if result:
-            print(f"El resultado es {result.alphabet}")
+            print(f"El resultado es {result}")
         else:
             print("Ningun nombre de alfabeto es valido")
