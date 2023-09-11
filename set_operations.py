@@ -1,15 +1,16 @@
 from abc import ABC, abstractmethod
 
 class SetOperations(ABC):
-
-    @abstractmethod
-    def union(self, other_set):
-        return SetOperations(self.data.union(other_set.data))
     
     @abstractmethod
+    def _init_(self, elements):
+        self.elements = set(elements)
+        
+    def union(self, other_set):
+        return self.elements.union(other_set.elements)
+    
     def intersection(self, other_set):
-        return SetOperations(self.data.intersection(other_set.data))
+        return self.elements.intersection(other_set.elements)
 
-    @abstractmethod
     def difference(self, other_set):
-        return SetOperations(self.data.difference(other_set.data))
+        return self.elements.difference(other_set.elements)
