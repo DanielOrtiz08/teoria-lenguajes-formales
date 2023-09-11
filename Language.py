@@ -3,7 +3,7 @@ from set_operations import SetOperations
 class Language(SetOperations):
     
     def __init__(self, language):
-        self.language = set(language)
+        super().__init__(language)
 
     def concatenation(self, other_language):
         concatenated_words = set()
