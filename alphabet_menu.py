@@ -24,7 +24,7 @@ def show_all_alphabet():
     print(f"{name}: {alphabet_instance.elements}")
     '''
 
-def get_name_input(choise):
+def ask_name_alphabet(choise):
     if choise in ("1", "2", "3"):
         alphabet_names = input("Ingrese los nombres de los conjuntos a operar de la forma A B C o A, B, C: ")
         return re.findall(r'[^,\s]+', alphabet_names)
@@ -56,7 +56,7 @@ def alphabet_menu():
         
         show_all_alphabet()
         
-        alphabet_names = get_name_input(choice)
+        alphabet_names = ask_name_alphabet(choice)
        
         result = None
         
@@ -64,7 +64,7 @@ def alphabet_menu():
         for name in alphabet_names:
             if name in Alphabet.all_alphabets:
                 if result is None and choice != "4":
-                    result = Alphabet.get_alphabet(name)
+                    result = Alphabet( Alphabet.get_alphabet(name))
                 elif choice == "1":
                     result = Alphabet(result._union(all_alphabets[name]))
                 elif choice == "2":

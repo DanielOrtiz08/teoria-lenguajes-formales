@@ -40,6 +40,11 @@ class Language(SetOperations):
     all_languages = {}
     
     # Metodos de clases
+    
+    @classmethod
+    def contains_language(cls, name):
+        return name in cls.all_languages
+    
     @classmethod
     def add_language(cls, name, element):
         if name not in cls.all_languages:
@@ -54,17 +59,17 @@ class Language(SetOperations):
         return cls.all_languages
     
     @classmethod
-    def get_languages(cls, name):
-        if cls.contains_languages(name):
+    def get_language(cls, name):
+        if cls.contains_language(name):
             return cls.all_languages[name]
     
     @classmethod
-    def set_languages(cls, name, elements):
+    def set_language(cls, name, elements):
         if cls.contains_languages(name):
             cls.all_languagess[name] = Language(elements)
 
     @classmethod
-    def delete_languages(cls, name):
+    def delete_language(cls, name):
         if cls.contains_languages(name):
             del cls.all_languauges[name]
 
