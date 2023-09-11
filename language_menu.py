@@ -1,4 +1,4 @@
-from language import Language
+from Language import Language
 import re
 
 def process_set(sets):
