@@ -6,8 +6,11 @@ class Language(SetOperations):
         self.language = set(language)
 
     def concatenation(self, other_language):
-        concatenated_words = {word1 + word2 for word1 in self.language for word2 in other_language}
-        return Language(concatenated_words)
+        concatenated_words = set()
+        for word1 in self.language:
+            for word2 in other_language:
+                concatenated_words.add(word1 + word2)
+        return concatenated_words
     
     def power(self, exponent):
         language = self.language
