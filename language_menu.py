@@ -1,6 +1,7 @@
 from Language import Language
 import re
 import os
+import time
 import main as m
 
 def process_set(language):
@@ -21,22 +22,23 @@ def show_all_language():
     
 def ask_name_language(choice):
     if choice in ("1", "2", "3", "4"):
-        language_names = input("Ingrese los nombres de los lenguajes a operar de la forma A B C o A, B, C: ")
+        language_names = input("\nIngrese los nombres de los lenguajes a operar de la forma A B C o A, B, C: ")
         return re.findall(r'[^,\s]+', language_names)
     else:
-        return [input("Ingrese el nombre del conjunto a operar: ")]
+        return [input("\nIngrese el nombre del conjunto a operar: ")]
     
 def language_menu():
     
     os.system('cls')
     
-    language_input = input("Digite los conjuntos de lenguanjess de la forma L1 = {cocina, pollo, Ingredientes} L2 = {programador, internet, ordenador, python}: ")
+    language_input = input("Digite los conjuntos de lenguanjess de la forma L1 = {cocina, pollo, Ingredientes} L2 = {programador, internet, ordenador, python}:\n ")
     language_input = "L1 = {fear, key, high} L2 = {hook, foot, kigs, 2}  L3 = {alex, daniel, deivis} D = {hello, bye, hi}" # esto es mientras se prueba el codigo
     process_set(language_input)
     
     
     #para este se hace igual que en el menu de alfabeto
     while True:
+
         print("\n Menú de Operaciones con Lenguajes ")
         print("1. Unión")
         print("2. Intersección")
@@ -49,8 +51,10 @@ def language_menu():
         choice = input("Selecciona una operación: ")
         
         if choice =="8":
+            os.system('cls')
             m.main()
         
+        os.system('cls')
         show_all_language()
         
         languages_names = ask_name_language(choice)
@@ -90,7 +94,8 @@ def language_menu():
         if choice != "7" and result is None:
             print("ningun nombre coincide con los elementos que hay")
         else:
-            print(f'El resultado es {result.elements}')
+            if choice != "7":
+              print(f'El resultado es {result.elements}')
             
     
         
