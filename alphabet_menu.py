@@ -25,7 +25,7 @@ def show_all_alphabet():
     '''
 
 def ask_name_alphabet(choise):
-    if choise in ("1", "2", "3"):
+    if choise not in ("4"):
         alphabet_names = input("Ingrese los nombres de los conjuntos a operar de la forma A B C o A, B, C: ")
         return re.findall(r'[^,\s]+', alphabet_names)
     else:
@@ -64,7 +64,7 @@ def alphabet_menu():
         for name in alphabet_names:
             if name in Alphabet.all_alphabets:
                 if result is None and choice != "4":
-                    result = Alphabet.get_alphabet(name)
+                    result = Alphabet.get_alphabet(name) #tercer cambio,
                 elif choice == "1":
                     result = Alphabet(result._union(all_alphabets[name]))
                 elif choice == "2":

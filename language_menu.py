@@ -20,11 +20,11 @@ def show_all_language():
         print(f"{name}: {all_languages[name].elements}")
     
 def ask_name_language(choice):
-    if choice not in ("5"):
+    if choice in ("1", "2", "3", "4"):
         language_names = input("Ingrese los nombres de los lenguajes a operar de la forma A B C o A, B, C: ")
         return re.findall(r'[^,\s]+', language_names)
     else:
-        return input("Ingrese el nombre del conjunto a operar: ")
+        return [input("Ingrese el nombre del conjunto a operar: ")]
     
 def language_menu():
     
@@ -61,7 +61,7 @@ def language_menu():
         
         for name in languages_names:
             if name in all_languages:
-                if result is None and choice != "5":
+                if result is None and choice in ("1", "2", "3", "4"):
                     result = Language.get_language(name)
                 elif choice == "1":
                     result = Language(result._union(all_languages[name]))
@@ -72,17 +72,26 @@ def language_menu():
                 elif choice == "4":
                     result = Language(result.concatenation(all_languages[name]))
                 elif choice == "5":
-                    exponent = int(input("ingrese el numero de veces que desee conectar el lenguaje con si mmismo(exponente)"))
+                    exponent = int(input("ingrese el numero de veces que desee conectar el lenguaje con si mismo(exponente): "))
                     language = Language.get_language(name)
                     power = language.power(exponent)
                     result = Language(power)
+                    break
+                elif choice == "6":
+                    result = Language(all_languages[name].inverse())
+                    break
+                elif choice == "7":
+                    print(f"el resultados es {all_languages[name].cardinality()}")
+                    result = None
+                    break
             else:
                 print(f'el conjunto {name} no se encuentra por ende no puede ser procesado')
         
-        if result:
-            print(f'El resultado es {result.elements}')
-        else:
+        if choice != "7" and result is None:
             print("ningun nombre coincide con los elementos que hay")
+        else:
+            print(f'El resultado es {result.elements}')
+            
     
         
             

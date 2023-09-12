@@ -6,29 +6,28 @@ class Language(SetOperations):
         super().__init__(language)
 
     def concatenation(self, other_language):
-        concatenated_words = set()
+        concatenated_words = list() #primer cambio
         for word1 in self.elements:
-            for word2 in other_language:
-                concatenated_words.add(word1 + word2)
+            for word2 in other_language.elements: #segundo cambio
+                concatenated_words.append(word1 + word2)
         return concatenated_words
     
     def power(self, exponent):
-        language = self.elements
         if exponent == 0:
         # L^0 = {λ} (conjunto que contiene la cadena vacía)
             return {""}
         elif exponent == 1:
         # L^1 = L (el lenguaje original)
-            return language
+            return self.elements
         else:
-            result = language
+            result = self.elements
             for _ in range(exponent-1):
-                result = self.concatenation(result)
+                result = self.concatenation(Language(result))
             return result
 
     def inverse(self):
         inverse_words = {word[::-1] for word in self.elements}
-        return Language(inverse_words)
+        return inverse_words
 
     def cardinality(self):
         return len(self.elements)
