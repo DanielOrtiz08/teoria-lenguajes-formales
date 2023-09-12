@@ -1,5 +1,5 @@
 import alphabet_menu as am
-from language_menu import language_menu
+import language_menu as lm
     
 def main():
     while True:
@@ -13,7 +13,7 @@ def main():
         if choice == "1":
             am.alphabet_menu()
         elif choice == "2":
-            language_menu()
+            lm.language_menu()
         elif choice == "3":
             break
         else:

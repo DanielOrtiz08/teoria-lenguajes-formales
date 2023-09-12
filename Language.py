@@ -47,7 +47,7 @@ class Language(SetOperations):
     
     @classmethod
     def add_language(cls, name, element):
-        if name not in cls.all_languages:
+        if not cls.contains_language(name):
             cls.all_languages[name] = element
         else:
             choice = input(f"el conjunto {name} ya existe, desea modificarlo (si/no)")

@@ -64,7 +64,7 @@ def alphabet_menu():
         for name in alphabet_names:
             if name in Alphabet.all_alphabets:
                 if result is None and choice != "4":
-                    result = Alphabet( Alphabet.get_alphabet(name))
+                    result = Alphabet.get_alphabet(name)
                 elif choice == "1":
                     result = Alphabet(result._union(all_alphabets[name]))
                 elif choice == "2":
