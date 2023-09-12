@@ -1,5 +1,6 @@
 from Alphabet import Alphabet
 import main as m
+import msvcrt as ms
 import re
 import os
 
@@ -26,10 +27,10 @@ def show_all_alphabet():
 
 def ask_name_alphabet(choise):
     if choise not in ("4"):
-        alphabet_names = input("Ingrese los nombres de los conjuntos a operar de la forma A B C o A, B, C: ")
+        alphabet_names = input("\nIngrese los nombres de los conjuntos a operar de la forma A B C o A, B, C: ")
         return re.findall(r'[^,\s]+', alphabet_names)
     else:
-        return input("Ingrese el nombre del conjunto a operar para la cerradura de estrella: ")
+        return input("\nIngrese el nombre del conjunto a operar para la cerradura de estrella: ")
 
 def alphabet_menu():
     
@@ -41,6 +42,8 @@ def alphabet_menu():
     
     
     while True:
+
+        os.system('cls')
 
         print("\n    Menú de Operaciones con Alfabetos    ")
         print("1. Unión")
@@ -54,6 +57,8 @@ def alphabet_menu():
             os.system('cls')
             m.main()
         
+        os.system('cls')
+
         show_all_alphabet()
         
         alphabet_names = ask_name_alphabet(choice)
@@ -79,8 +84,13 @@ def alphabet_menu():
                     break
             else:
                 print(f"El conjunto {name}, no se encuentra por ende no será procesado")
+                ms.getch()
                 
         if result:
+            os.system('cls')
             print(f"El resultado es {result.elements}")
+            ms.getch()
         else:
+            os.system('cls')
             print("Ningun nombre de alfabeto es valido")
+            ms.getch()

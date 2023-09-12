@@ -1,8 +1,8 @@
 from Language import Language
 import re
 import os
-import time
 import main as m
+import msvcrt as ms
 
 def process_set(language):
     pattern = r'\s*(\w+)\s*=\s*{([^}]+)}'
@@ -22,7 +22,7 @@ def show_all_language():
     
 def ask_name_language(choice):
     if choice in ("1", "2", "3", "4"):
-        language_names = input("\nIngrese los nombres de los lenguajes a operar de la forma A B C o A, B, C: ")
+        language_names = input("\nIngrese los nombres de los lenguajes a operar de la forma A B C o A, B, C:\n ")
         return re.findall(r'[^,\s]+', language_names)
     else:
         return [input("\nIngrese el nombre del conjunto a operar: ")]
@@ -38,6 +38,8 @@ def language_menu():
     
     #para este se hace igual que en el menu de alfabeto
     while True:
+
+        os.system('cls')
 
         print("\n Menú de Operaciones con Lenguajes ")
         print("1. Unión")
@@ -85,17 +87,23 @@ def language_menu():
                     result = Language(all_languages[name].inverse())
                     break
                 elif choice == "7":
+                    os.system('cls')
                     print(f"el resultados es {all_languages[name].cardinality()}")
                     result = None
+                    ms.getch()
                     break
             else:
                 print(f'el conjunto {name} no se encuentra por ende no puede ser procesado')
+                ms.getch()
         
         if choice != "7" and result is None:
             print("ningun nombre coincide con los elementos que hay")
+            ms.getch()
         else:
             if choice != "7":
+              os.system('cls')
               print(f'El resultado es {result.elements}')
+              ms.getch()
             
     
         

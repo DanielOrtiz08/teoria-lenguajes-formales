@@ -15,7 +15,7 @@ def main():
         elif choice == "2":
             lm.language_menu()
         elif choice == "3":
-            break
+            exit()
         else:
             print("Opción no válida. Inténtalo de nuevo.")
   
