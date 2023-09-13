@@ -9,9 +9,9 @@ def process_set(alphabets):
     pattern = r'\s*(\w+)\s*=\s*{([^}]+)}'
     all_alphabets = re.findall(pattern, alphabets)
     
-    for sets in all_alphabets:
-        name = sets[0]  # Nombre del conjunto
-        values = re.findall(r'[^,\s]+', sets[1])  # Lista de valores del conjunto
+    for _set in all_alphabets:
+        name = _set[0]  # Nombre del conjunto
+        values = re.findall(r'[^,\s]+', _set[1])  # Lista de valores del conjunto
         Alphabet.add_alphabet(name, values)
         
         
@@ -19,19 +19,17 @@ def show_all_alphabet():
     print(f"Los Alfabetos registrados hasta el momento son: ")
     all_alphabets = Alphabet.get_all_alphabets()
     for name in all_alphabets:
-        print(f"{name}: {all_alphabets[name].elements}")
+        if all_alphabets[name].elements:
+            print(f"{name}: {all_alphabets[name].elements}")
     '''
     for name, alphabet_instance in all_alphabets.items():
-    print(f"{name}: {alphabet_instance.elements}")
+        print(f"{name}: {alphabet_instance.elements}")
     '''
 
-def ask_name_alphabet(choise):
-    if choise not in ("4"):
-        alphabet_names = input("\nIngrese los nombres de los conjuntos a operar de la forma A B C o A, B, C: ")
-        return re.findall(r'[^,\s]+', alphabet_names)
-    else:
-        return input("\nIngrese el nombre del conjunto a operar para la cerradura de estrella: ")
-
+def ask_name_alphabet():
+    alphabet_names = input("\nIngrese los nombres de los conjuntos a operar de la forma A B C o A, B, C: ")
+    return re.findall(r'[^,\s]+', alphabet_names)
+    
 def alphabet_menu():
     
     os.system('cls')
@@ -53,15 +51,14 @@ def alphabet_menu():
         print("5. Volver al menú principal")
         choice = input("Selecciona una operación: ")
         
-        if choice == "5":
-            os.system('cls')
-            m.main()
-        
         os.system('cls')
+        
+        if choice == "5":
+            m.main()
 
         show_all_alphabet()
         
-        alphabet_names = ask_name_alphabet(choice)
+        alphabet_names = ask_name_alphabet()
        
         result = None
         
@@ -80,17 +77,18 @@ def alphabet_menu():
                     num_elements = int(input(f"Ingrese la cantidad de elementos para la cerradura estrella del conjunto {name}: "))
                     alphabet = Alphabet.get_alphabet(name)
                     clousure = alphabet.generate_closure(num_elements)
-                    result = Alphabet(clousure)
-                    break
+                    print(f"La cerradura de estrella para {name} con {num_elements} elementos es {clousure}")
+                else:
+                    print("opcion no valida")
             else:
                 print(f"El conjunto {name}, no se encuentra por ende no será procesado")
-                ms.getch()
-                
-        if result:
-            os.system('cls')
-            print(f"El resultado es {result.elements}")
-            ms.getch()
-        else:
-            os.system('cls')
-            print("Ningun nombre de alfabeto es valido")
-            ms.getch()
+            
+        if(choice != "4"):
+            if result:
+                print(f"El resultado es {result.elements}")
+            else:
+                print("Ningun nombre de alfabeto es valido")
+        
+        ms.getch()
+        os.system('cls')
+    
